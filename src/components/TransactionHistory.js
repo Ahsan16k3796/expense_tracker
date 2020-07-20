@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GlobalContext, GlobalContxt } from '../context/GlobalState'
+import { GlobalContxt} from '../context/GlobalState';
 
 //Import transaction
 
