@@ -12,16 +12,16 @@ const initialState={
     ]
 }
 
-//create the global contxt 
+// create the global contxt 
 
 export const GlobalContxt =createContext(initialState);
 
-// Create a provider for the Global
+//Create a provider for the Global Contexting 
 export const GlobalProvider= ({children}) =>{
     
-    const [state, dispatch]=useReducer(AppReducer,initialState);
+    const [state]=useReducer(AppReducer,initialState);
 
-    
+
     return(
         <GlobalContxt.Provider value={
             {
