@@ -1,14 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState , useContext } from 'react';
+import { GlobalContxt} from '../context/GlobalState';
+
 
 export const AddTransaction=()=>{
     
     const [description,setDescription]=useState(); //creating the state  for description   
     const [transactionAmount,setTransactionAmount]=useState(); //creating useState for set transaction and transaction amount 
     
+    const { AddTransaction }= useContext( GlobalContxt );
+
+    const onSubmit=e =>{
+        e.preventDefault();
+
+        const newTransaction={
+            id: Math.floor(Math.random()*10000000),
+            description,
+            transactionAmount : +transactionAmount 
+        };
+
+        AddTransaction(newTransaction);
+    }
+
     return(
         <div>
             <h3> Add New Transaction </h3>
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="form-control">
                     <label htmlFor="description">
                         Description

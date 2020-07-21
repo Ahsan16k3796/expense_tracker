@@ -8,6 +8,8 @@ import { Transaction } from './Transaction'
 export const TransactionHistory=()=>{
     
     const { transactions }=useContext(GlobalContxt);
+
+    // console.log(transactions);
         
     return(
         <div>
@@ -16,11 +18,6 @@ export const TransactionHistory=()=>{
                 {transactions.map(transaction => (
                     <Transaction key={transaction.id} transaction={transaction}/>
                 ))}
-                <li className="minus">
-                    Project 1 Salaries
-                    <span>-$500</span>
-                    <button className="delete-btn">X</button>
-                </li>
             </ul>
         </div>
     )

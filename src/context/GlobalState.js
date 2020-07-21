@@ -4,12 +4,7 @@ import AppReducer from './Appreducer';
 //create initila state 
 
 const initialState={
-    transactions:[
-        {id: 1, description:"Income 1", transactionAmount:10000},
-        {id: 2, description:"Expense 1", transactionAmount:-1000},
-        {id: 3, description:"Income 2", transactionAmount:1000},
-        {id: 4, description:"Expense 2", transactionAmount:-500}        
-    ]
+    transactions:[  ]
 }
 
 // create the global contxt 
@@ -19,13 +14,30 @@ export const GlobalContxt =createContext(initialState);
 //Create a provider for the Global Contexting 
 export const GlobalProvider= ({children}) =>{
     
-    const [state]=useReducer(AppReducer,initialState);
+    const [state,dispatch]=useReducer(AppReducer,initialState);
 
+    //Actions
 
+    function deleteTransaction(id){
+        dispatch({type: 'DELETE_TRANSACTION',
+        payload : id
+    });
+    }
+
+    function AddTransaction(transaction){
+        dispatch({
+        type: 'ADD_TRANSACTION',
+        payload : transaction
+    });
+    }
+    
+    
     return(
         <GlobalContxt.Provider value={
             {
-                transactions: state.transactions
+                transactions: state.transactions,
+                deleteTransaction,
+                AddTransaction
             }
         }>
             {children}
